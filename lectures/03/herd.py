@@ -25,7 +25,7 @@ tess.color("Pink")
 tess.pensize(5)
 
 alex = turtle.Turtle()     # Create alex and set some attributes
-alex.clor("Navy")
+alex.color("Navy")
 
 tess.forward(80)           # Make tess draw equilateral triangle
 tess.left(120)
