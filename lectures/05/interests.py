@@ -16,10 +16,10 @@ def final_amount(p, r, n, t):
 
 
 # now that we have the function above, let us call it.
-toInvest = float(input("How much do you want to invest? "))
+to_invest = float(input("How much do you want to invest? "))
 
-# p = toInvest, r = 0.08, n = 2, t = 5
-final = final_amount(toInvest, 0.08, 2, 5)
+# p = to_invest, r = 0.08, n = 2, t = 5
+final = final_amount(to_invest, 0.08, 2, 5)
 print("At the end of the period you'll have", final)
 
 
