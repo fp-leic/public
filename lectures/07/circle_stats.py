@@ -15,7 +15,7 @@ def circle_stats(r):
     """ Return (circumference, area) of a circle of radius r """
     circumference = 2 * math.pi * r
     area = math.pi * r * r
-    return circumference, area
+    return (circumference, area)
 
 print()
 print(circle_stats(1))

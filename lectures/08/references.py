@@ -12,18 +12,18 @@ print()
 a = "banana"
 b = "banana"
 
-print("strings is?", a is b)
+print(a is b)
 
 # but for lists is different
 a = [1, 2, 3]
 b = [1, 2, 3]
 
-print("list ==?", a == b)
-print("lists is?", a is b)
+print(a == b)
+print(a is b)
 
 # advanced stuff
 print()
-print("id(a)", id(a))
-print("id(b)", id(b))
-print("ids ==?", id(a) == id(b))
-print("is ?", a is b)
+print(id(a))
+print(id(b))
+print(id(a) == id(b))
+print(a is b)
