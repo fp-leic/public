@@ -21,6 +21,7 @@
 - https://github.com/rpmcruz
 - https://github.com/eSoares
 - https://github.com/pbv
+- https://github.com/imdcode
 
 ### Descrição
 
