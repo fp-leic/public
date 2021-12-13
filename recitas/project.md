@@ -22,6 +22,7 @@
 - https://github.com/eSoares
 - https://github.com/pbv
 - https://github.com/imdcode
+- https://github.com/acoelho-fe-up-pt
 
 ### Descrição
 
