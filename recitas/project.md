@@ -31,7 +31,7 @@ Ou seja, se ele ficar junto à parede, a pessoa precisa de reiniciar o jogo. Est
 
 ### UI
 
-![UI](https://github.com/fp-leic/public/blob/master/recitas/ui.png)
+![UI](ui.png)
 
 ### Pacotes
 
