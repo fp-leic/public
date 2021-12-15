@@ -1,7 +1,7 @@
 # Projeto XXXX
-## FPRO/MIEIC, 2021/22
+## FP/L.EIC, 2021/22
 ## Fulano de Tal (up2021xxxxx)
-## 1MIEICXX
+## 1LEICXX
 
 ### Objetivo
 
@@ -45,4 +45,4 @@ Ou seja, se ele ficar junto à parede, a pessoa precisa de reiniciar o jogo. Est
 1. ler teclas e mover as peças
 2. verificar se jogador chegou ao fim do nível
 
-- Atualizado a última vez em 07/12/2021
+- Atualizado a última vez em 15/12/2021
