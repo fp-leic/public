@@ -3,7 +3,7 @@
 """
 Created on Sat Feb 12 11:45:03 2022
 
-@author: jlopes
+@author: jlopes, et all.
 """
 
 from typing import List
