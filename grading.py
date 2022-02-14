@@ -10,8 +10,8 @@ from typing import List
 
 
 def grading(special: bool, absences: int, le: int, re: int,
-            pes: List[int], pe_global_missing: bool,
-            tes: List[int], te_global_missing: bool) -> str:
+            pes: List[int], missing_last_pe: bool,
+            tes: List[int], missing_last_te: bool) -> str:
     """Given the components, computes the final grade of FP using rules:
        https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=484382
     """
@@ -19,9 +19,9 @@ def grading(special: bool, absences: int, le: int, re: int,
     MIN_GRADE = 40
     MAX_RECUP = 50
 
-    pe_global = max(pes[-2], pes[-1]) if pe_global_missing \
+    pe_global = max(pes[-2], pes[-1]) if missing_last_pe \
                 else max(pes[-2], min(pes[-1], MAX_RECUP))    # recuperation
-    te_global = max(tes[-2], tes[-1]) if te_global_missing \
+    te_global = max(tes[-2], tes[-1]) if missing_last_te \
                 else max(tes[-2],  min(tes[-1], MAX_RECUP))   # recuperation
 
     grade_prompt = "Final grade:"
