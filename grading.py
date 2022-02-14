@@ -35,9 +35,7 @@ def grading(special: bool, absences: int, le: int, re: int,
         return f"{grade_prompt} RFF"
 
     # compute pe
-    new_pes = [pe_global]
-    for p in pes[:-2]:
-        new_pes.append(p)  # sum all other pe
+    new_pes = [pe_global] + pes[:-2]
     pe = (sum(new_pes) - min(new_pes)) // (len(new_pes)-1)  # discard the smallest
 
     # compute te
