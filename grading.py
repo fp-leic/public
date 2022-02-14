@@ -9,14 +9,14 @@ Created on Sat Feb 12 11:45:03 2022
 from typing import List
 
 
-def grading(special: bool, missings: int, le: int, re: int,
+def grading(special: bool, absences: int, le: int, re: int,
             pes: List[int], pe_global_missing: bool,
             tes: List[int], te_global_missing: bool) -> str:
     """Given the components, computes the final grade of FP using rules:
        https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=484382
     """
-    MISSING_ALLOWED = 3
-    MIM_GRADE = 40
+    MISSINGS_ALLOWED = 3
+    MIN_GRADE = 40
     MAX_RECUP = 50
 
     pe_global = max(pes[-2], pes[-1]) if pe_global_missing \
@@ -27,18 +27,18 @@ def grading(special: bool, missings: int, le: int, re: int,
     grade_prompt = "Final grade:"
 
     # compute RFF
-    if missings > MISSING_ALLOWED and not special:
+    if absences > MISSINGS_ALLOWED and not special:
         return f"{grade_prompt} RFF"
-    if pe_global < MIM_GRADE:
+    if pe_global < MIN_GRADE:
         return f"{grade_prompt} RFF"
-    if te_global < MIM_GRADE:
+    if te_global < MIN_GRADE:
         return f"{grade_prompt} RFF"
 
     # compute pe
-    pe = pe_global
+    new_pes = [pe_global]
     for p in pes[:-2]:
-        pe += p                           # sum all other pe
-    pe = (pe - min(pes)) // (len(pes)-1)  # discard the smallest
+        new_pes.append(p)  # sum all other pe
+    pe = (sum(new_pes) - min(new_pes)) // (len(new_pes)-1)  # discard the smallest
 
     # compute te
     te = te_global
@@ -50,11 +50,12 @@ def grading(special: bool, missings: int, le: int, re: int,
     return f"{grade_prompt} {grade}"
  
 print()
-print(grading(False, 4, 100, 100, [100, 100, 100, 0], False, [100, 0], False))
-print(grading(False, 3, 60, 80, [100, 100, 20, 0], False, [0, 0], False))
-print(grading(False, 3, 60, 80, [100, 100, 100, 0], False, [20, 0], False))
-print(grading(False, 3, 60, 80, [100, 100, 20, 50], False, [60, 0], False))
-print(grading(False, 3, 60, 80, [100, 100, 20, 80], False, [60, 0], False))
-print(grading(False, 3, 60, 80, [100, 100, 20, 80], True, [20, 50], True))
-print(grading(False, 3, 60, 80, [100, 100, 20, 60], True, [20, 60], True))
-print(grading(True, 3, 60, 80, [100, 100, 20, 60], False, [20, 60], True))
+print("1.", grading(False, 4, 100, 100, [100, 100, 100, 0], False, [100, 0], False))
+print("2.", grading(False, 3, 60, 80, [100, 100, 20, 0], False, [0, 0], False))
+print("3.", grading(False, 3, 60, 80, [100, 100, 100, 0], False, [20, 0], False))
+print("4.", grading(False, 3, 60, 80, [100, 100, 20, 50], False, [60, 0], False))
+print("5.", grading(False, 3, 60, 80, [100, 100, 20, 80], False, [60, 0], False))
+print("6.", grading(False, 3, 60, 80, [100, 100, 20, 80], True, [20, 50], True))
+print("7.", grading(False, 3, 60, 80, [100, 100, 20, 60], True, [20, 60], True))
+print("8.", grading(True, 3, 60, 80, [100, 100, 20, 60], False, [20, 60], True))
+print("9.", grading(True, 3, 60, 80, [100, 100, 20, 60], False, [100, 0], True))
