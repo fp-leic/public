@@ -10,18 +10,35 @@ from typing import List
 
 
 def grading(special: bool, absences: int, le: int, re: int,
-            pes: List[int], missing_last_pe: bool,
-            tes: List[int], missing_last_te: bool) -> str:
+            pes: List[int], justified_pe_absence: bool,
+            tes: List[int], justified_te_absence: bool) -> str:
     """Given the components, computes the final grade of FP using rules:
        https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=484382
+    
+    special: student of special regime (TE, DA, EA, AR, ...)
+    absences: number pratical classes absences
+    le: agregate LE classification (given by Moodle gradebook)
+    re: agregate RE classification (given by Moodle gradebook)
+    pes: list with all pratical on computer evaluation (PEXX); 4 terms in 2021/22
+    justified_pe_absence: absence to PE with justification accepted
+    tes: list with all teorical evaluation (PEXX); 4 terms in 2021/22
+    justified_te_absence: absence to TE with justification accepted
+    
+    return: classification string
     """
+    assert len(pes) >= 4
+    assert len(tes) == 2
+    assert 0 <= le <= 100
+    assert 0 <= re <= 100
+    assert all(map(lambda x: 0 <= x <= 100, pes + tes))
+
     MISSINGS_ALLOWED = 3
     MIN_GRADE = 40
     MAX_RECUP = 50
 
-    pe_global = max(pes[-2], pes[-1]) if missing_last_pe \
+    pe_global = max(pes[-2], pes[-1]) if justified_pe_absence \
                 else max(pes[-2], min(pes[-1], MAX_RECUP))    # recuperation
-    te_global = max(tes[-2], tes[-1]) if missing_last_te \
+    te_global = max(tes[-2], tes[-1]) if justified_te_absence \
                 else max(tes[-2],  min(tes[-1], MAX_RECUP))   # recuperation
 
     grade_prompt = "Final grade:"
