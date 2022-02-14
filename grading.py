@@ -15,29 +15,34 @@ def grading(special: bool, absences: int, le: int, re: int,
     """Given the components, computes the final grade of FP using rules:
        https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=484382
     
-    special: student of special regime (TE, DA, EA, AR, ...)
+    special: student of special regimes (TE, DA, EA, AR, ...)
     absences: number pratical classes absences
-    le: agregate LE classification (given by Moodle gradebook)
-    re: agregate RE classification (given by Moodle gradebook)
-    pes: list with all pratical on computer evaluation (PEXX); 4 terms in 2021/22
-    justified_pe_absence: absence to PE with justification accepted
-    tes: list with all teorical evaluation (PEXX); 4 terms in 2021/22
-    justified_te_absence: absence to TE with justification accepted
+    le: agregate LE classification (given by the Moodle gradebook)
+    re: agregate RE classification (given by the Moodle gradebook)
+    pes: list with all (4 terms in 2021/22) pratical on computer evaluation (PEXX)
+    justified_pe_absence: absence to PEXX global with justification accepted
+    tes: list with all teorical evaluation (TEXX); 2 terms
+    justified_te_absence: absence to TE01 global with justification accepted
     
     return: classification string
     """
+    # validade inputs
     assert len(pes) >= 4
     assert len(tes) == 2
     assert 0 <= le <= 100
     assert 0 <= re <= 100
     assert all(map(lambda x: 0 <= x <= 100, pes + tes))
 
+    # constants
     MISSINGS_ALLOWED = 3
     MIN_GRADE = 40
     MAX_RECUP = 50
 
+    # pe with minimum classification required (the last)
     pe_global = max(pes[-2], pes[-1]) if justified_pe_absence \
                 else max(pes[-2], min(pes[-1], MAX_RECUP))    # recuperation
+
+    # te with minimum classification required
     te_global = max(tes[-2], tes[-1]) if justified_te_absence \
                 else max(tes[-2],  min(tes[-1], MAX_RECUP))   # recuperation
 
@@ -51,14 +56,14 @@ def grading(special: bool, absences: int, le: int, re: int,
     if te_global < MIN_GRADE:
         return f"{grade_prompt} RFF"
 
-    # compute pe
+    # compute PE
     new_pes = [pe_global] + pes[:-2]
     pe = (sum(new_pes) - min(new_pes)) // (len(new_pes)-1)  # discard the smallest
 
-    # compute te
+    # compute TE
     te = te_global
 
-    # compute final grade
+    # compute FINAL grade
     grade = int(((le + re + 13 * pe + 5 * te) / 100) + 0.5) if not special \
             else int(((14 * pe + 6 * te) / 100) + 0.5)
 
