@@ -11,18 +11,18 @@ Created on Thu Oct  6 11:36:24 2022
 
 import math
 
-# first get the coefficients
-a = float(input("give me the a: "))  # 1
-b = float(input("give me the b: "))  # 10
-c = float(input("give me the c: "))  # -24
+# first, get the coefficients
+a = float(input("give me the a: "))
+b = float(input("give me the b: "))
+c = float(input("give me the c: "))
 
 if a == 0:
-    print("Input correct quadratic equation!")
+    print("Invalid quadratic equation!")
 else:
-    # second calculate the discriminant using the formula
+    # second, calculate the discriminant using the formula
     delta = b*b-4*a*c
 
-    # checking condition for delta
+    # third, checking the 3 condition for delta
     if delta > 0:
         # for x^2 + 5x + 6 roots are "-2.0 -3.0"
         p1 = -b/(2*a)
