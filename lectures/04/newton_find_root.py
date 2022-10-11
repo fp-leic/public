@@ -28,9 +28,9 @@ so that f′(x) = 2x
 # def fprime(x):
 #     return 2*x           # f'(x) = 2x
 
-x0 = 1                   # The initial guess
-tolerance = 0.0000000001    # the accuracy desired
-max_iterations = 100     # The maximum number of iterations to execute
+x0 = 1                    # The initial guess
+tolerance = 0.0000000001  # the accuracy desired
+max_iterations = 100      # The maximum number of iterations to execute
 
 for i in range(max_iterations):
     y = x0**2 - 2  # f(x0)
