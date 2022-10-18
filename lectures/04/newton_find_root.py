@@ -51,4 +51,3 @@ for i in range(max_iterations):
 print(i, "iterations")
 if i == max_iterations-1:
     print("Max number iterations")  # Newton's method did not converge
-    
