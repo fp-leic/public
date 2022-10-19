@@ -8,14 +8,14 @@ Created on Wed Oct 19 00:26:39 2022
 
 
 def encrypt(text, shift):
-    """Encrypt text using Caeser of s."""
+    """Encrypt text using Caeser of 'shift'."""
+
     result = ""
 
     # transverse the plain text
 
     # for i in range(len(text)):
     #     char = text[i]
-
     for char in text:
 
         # Encrypt uppercase characters in plain text
@@ -36,7 +36,8 @@ def encrypt(text, shift):
 
             # append to encrypted string
             result += new_character
-        
+
+            # in one line!
             # result += chr((ord(char) - 65 + shift) % 26 + 65)
 
         # Encrypt lowercase characters in plain text

@@ -18,10 +18,9 @@ def translate(a_string, table):
     """Translates a given string using a translation table."""
 
 # unzip the translation table
-
     intab, outtab = zip(*table)
 
-# use the accumulator pattern
+# use the accumulator
     result = ''
 
 # traverse the original string
@@ -37,10 +36,10 @@ def translate(a_string, table):
             # 2. translate the char at the index
             new_char = str(outtab[index])
 
-            # accumulate
+            # 3. accumulate
             result += new_char
 
-            # one line!
+            # in one line!
             # result += str(outtab[intab.index(ch)])
 
         # do not translate
@@ -52,10 +51,8 @@ def translate(a_string, table):
 
 
 # drive code to test the function
-
 table1 = (('a', 1), ('e', 2), ('i', 3), ('o', 4), ('u', 5), ('!', ' :)'))
 table2 = ((' ', '--'), ('.', '!'), ('i', 'o'), ('t', 'tt'))
-
 s1 = "Hello world!"
 s2 = "Testing this string..."
 
