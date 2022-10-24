@@ -6,7 +6,7 @@ Created on Thu Oct  4 11:36:24 2022
 @author: jlopes
 """
 
-"""PROBLEM
+"""PROBLEM (quadratic equation):
 
 # Find the roots of quadratic equation ax^2 + bx + c = 0
 # were a, b and c are real numbers and a <> 0

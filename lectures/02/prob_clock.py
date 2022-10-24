@@ -8,7 +8,7 @@ Created on Mon Sep 29 15:31:52 2022
 
 
 """
-PROBLEM (Clock in seconds):
+PROBLEM (clock in seconds):
 
 Given a number of minutes, how many hours, minutes and seconds there are?
 """
