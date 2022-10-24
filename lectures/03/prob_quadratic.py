@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Oct  4 11:36:24 2022
+Created on Thu Oct  6 11:36:24 2022
 
 @author: jlopes
 """
 
-"""PROBLEM (quadratic equation):
+"""PROBLEM 3 (quadratic equation):
 
 # Find the roots of quadratic equation ax^2 + bx + c = 0
 # were a, b and c are real numbers and a <> 0

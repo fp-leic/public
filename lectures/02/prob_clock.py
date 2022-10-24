@@ -8,7 +8,7 @@ Created on Mon Sep 29 15:31:52 2022
 
 
 """
-PROBLEM (clock in seconds):
+PROBLEM 2 (clock in seconds):
 
 Given a number of minutes, how many hours, minutes and seconds there are?
 """
@@ -20,4 +20,4 @@ secs_remaining = total_secs % 3600
 minutes = secs_remaining // 60
 secs_remaining = secs_remaining % 60
 
-print("Hrs:=", hours, '/', "mins:", minutes, '/', "secs:", secs_remaining)
+print(hours, "hours,", minutes, 'minutes and', secs_remaining, "seconds")

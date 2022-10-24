@@ -6,6 +6,25 @@ Created on Wed Oct 19 00:26:39 2022
 @author: jlopes
 """
 
+"""
+PROBLEM 6 (Caesar cipher):
+
+Write a function to encrypt text using the Caeser cipher.
+
+In cryptography, a Caesar cipher, also known as Caesar's cipher, the
+shift cipher, Caesar's code or Caesar shift, is one of the simplest
+and most widely known encryption techniques.
+It is a type of substitution cipher in which each letter in the
+plaintext is replaced by a letter some fixed number of positions
+down the alphabet.
+For example, with a left shift of 3, D would be replaced by A, E 
+would become B, and so on. 
+The method is named after Julius Caesar, who used it in his 
+private correspondence.
+https://en.wikipedia.org/wiki/Caesar_cipher
+
+The ASCII table: https://en.cppreference.com/w/cpp/language/ascii
+"""
 
 def encrypt(text, shift):
     """Encrypt text using Caeser of 'shift'."""
@@ -18,7 +37,7 @@ def encrypt(text, shift):
     #     char = text[i]
     for char in text:
 
-        # Encrypt uppercase characters in plain text
+        # encrypt uppercase characters in plain text
         if (char.isupper()):
             # ord('A') => 65; chr(65) => 'A'
             # there are 26 letters
@@ -40,7 +59,7 @@ def encrypt(text, shift):
             # in one line!
             # result += chr((ord(char) - 65 + shift) % 26 + 65)
 
-        # Encrypt lowercase characters in plain text
+        # encrypt lowercase characters in plain text
         else:
             # ord('a') => 97; chr(97) => 'a'
 

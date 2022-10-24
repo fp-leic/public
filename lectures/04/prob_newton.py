@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Oct 6 23:16:35 2022
+Created on Tue Oct 12 23:16:35 2022
 
 @author: jlopes
 """
 
 """
-PROBLEM (Newton's method'):
-    
+PROBLEM 4 (Newton's method'):
+
 Newton's method for finding roots.
 https://en.wikipedia.org/wiki/Newton%27s_method
 
@@ -17,7 +17,7 @@ approximations to the roots (or zeroes) of a real-valued function.
 The most basic version starts with a single-variable function f
 defined for a real variable x, the function's derivative f′,
 and an initial guess x0 for a root of f.
-If the function satisfies sufficient assumptions and the initial 
+If the function satisfies sufficient assumptions and the initial
 guess is close...
 """
 

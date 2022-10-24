@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Oct 12 16:48:55 2022
+Created on Wed Oct 13 16:48:55 2022
 
 Python function to check if a number is palindrome or not.
 
@@ -9,6 +9,10 @@ Python function to check if a number is palindrome or not.
 """
 
 """
+PROBLEM 5 (Palindrome):
+
+Write a Python function to check if a number is palindrome or not.
+
 Definition of palindrome: a word, verse, or sentence (such as
 "Able was I ere I saw Elba") or a number (such as 1881)
 that reads the same backward or forward
@@ -31,11 +35,11 @@ def palindrome_check(number):
     reverse = reverse_number(number)
 
     if(reverse == number):
-        print(number, "is a palindrome number")
+        return f'{number} is a palindrome number'
     else:
-        print(number, "is not a palindrome number")
+        return f'{number} is not a palindrome number'
 
 print()
-palindrome_check(131)
-palindrome_check(3443)
-palindrome_check(1234567)
+print(palindrome_check(131))
+print(palindrome_check(3443))
+print(palindrome_check(1234567))
