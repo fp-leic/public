@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 09 15:27:15 2022
+Created on Mon Sep 28 15:27:15 2022
 
 @author: jlopes
 """
 
 """
-PROBLEM:
+PROBLEM (hello Spyder):
+
 If the sale price of a big tv set is 1000€ and the shop gives back the
 VAT (IVA) how much do you pay?
 """
