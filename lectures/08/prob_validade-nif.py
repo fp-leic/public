@@ -9,7 +9,7 @@ Created on Mon Oct 26 01:08:23 2022
 """
 The rules for NIF validation are:
 - Validate size (9 digits)
-- The first digit has to be 1, 2, 3, 5, 6, 7, 8 or 9 (2 and 3 ony later)
+- The first digit has to be 1, 2, 3, 5, 6, 7, 8 or 9 (2 and 3 added later)
 - The checksum is given by 9xd1 + 8xd2 + 7xd3 + ... + 3xd7 + 2xd8
 - If remainder of the division by 11 is less than 2, check digit is 0
 - Otherwise it's 11 minus the remainder
