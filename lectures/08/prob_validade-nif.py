@@ -9,7 +9,7 @@ Created on Mon Oct 26 01:08:23 2022
 """
 The rules for NIF validation are:
 - Validate size (9 digits)
-- The first digit has to be 1, 2, 5, 6, 7, 8 or 9
+- The first digit has to be 1, 2, 3, 5, 6, 7, 8 or 9 (2 and 3 ony later)
 - The checksum is given by 9xd1 + 8xd2 + 7xd3 + ... + 3xd7 + 2xd8
 - If remainder of the division by 11 is less than 2, check digit is 0
 - Otherwise it's 11 minus the remainder
@@ -20,7 +20,7 @@ The rules for NIF validation are:
 def validate_NIF(nif):
     MAX = 9
     MIN_NIF = 10**(MAX-1)  # 100000000
-    VALID_FIRSTS = [1, 2, 5, 6, 7, 8, 9]
+    VALID_FIRSTS = [1, 2, 3, 5, 6, 7, 8, 9]
 
     if nif < MIN_NIF:
         return f'{nif} is not a valid NIF: too short'
@@ -56,6 +56,7 @@ def validate_NIF(nif):
 # drive code
 print()
 print(validate_NIF(12345678))
+print(validate_NIF(123456789))
 print(validate_NIF(342345678))
 print(validate_NIF(134114025))
 print(validate_NIF(152114025))
