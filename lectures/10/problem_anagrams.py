@@ -31,23 +31,20 @@ def case_insensitive(item):
 def anagrams(alist):
     """Return a group of anagrams as a nested list."""
 
-    keys = []    # sorted, lower case and without spaces
-    groups = []  # the groups in the order of the corrresponding keys
+    groups = {}  # an empty dictionary: key => list of strings
 
     # for each string in the list find the key and the grouping
     for s in sorted(alist, key=case_insensitive):
 
         s_key = ''.join(sorted(s.lower())).replace(" ", "")  # the key
 
-        if s_key not in keys:   # the key is a new one
-            keys.append(s_key)  # append the new key
-            groups.append([s])  # append the original word
+        if s_key not in groups:      # the key is a new one
+            groups[s_key] = [s]      # add a new entry to the dict
 
-        else:                   # the key is an old one
-            index = keys.index(s_key)  # find the key
-            groups[index].append(s)    # append the original word
+        else:                        # the key is an old one
+            groups[s_key].append(s)  # append the original word
 
-    return groups
+    return list(groups.values())
 
 
 # drive code
