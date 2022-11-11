@@ -28,6 +28,6 @@ strngs = [strng1, strng2]
 
 for s in strngs:
     if is_pangram(s):
-        print("The string '{0}' is a pangram".format(s))
+        print(f"The string '{s}' is a pangram")
     else:
-        print("The string '{0}' isn't a pangram".format(s))
+        print(f"The string '{s}' isn't a pangram")
