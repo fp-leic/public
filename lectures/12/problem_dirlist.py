@@ -1,8 +1,8 @@
 #
-# Lecture 13 - Recursion
+# Lecture 12 - Recursion
 # 
-# Create a recursive data structure represeting a diretory tree
-# Pretty-print the diretory tree 
+# 1) Create a recursive data structure representing a diretory tree
+# 2) Pretty-print the diretory tree 
 #
 # jlopes, pbv
 #

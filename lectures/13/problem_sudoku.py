@@ -1,5 +1,5 @@
 #
-# Lecture 14 - Recursive Sudoku Puzzle solver
+# Lecture 13 - Recursive Sudoku Puzzle solver
 #
 # Fill a 9x9 grid with numbers from 1 to 9 such that
 # every row, column and 3x3 subsquare contains only
