@@ -24,61 +24,67 @@ grid = [[5,3,0,0,7,0,0,0,0],
         [0,0,0,0,8,0,0,1,9]]
 
 
-def possible(y,x,n):
-    '''Check if it is valid to place number n at coordinates x,y.'''
+def check_possible(number,row,col):
+    '''Check if it is valid to place number at coordinates row,col.'''
     global grid
-    # search row y
+    # search row 
     for i in range(0,9):
-        if grid[y][i] == n:
+        if grid[row][i] == number:
             return False
-    # search column x
+    # search column
     for i in range(0,9):
-        if grid[i][x] == n:
+        if grid[i][col] == number:
             return False
     # seach subsquare of x,y
-    x = (x//3)*3
-    y = (y//3)*3
+    # origin of the subsquare
+    r = (row//3)*3
+    c = (col//3)*3
+    # iterate over 3*3 subsquare
     for i in range(0,3):
         for j in range(0,3):
-            if grid[y+i][x+j] == n:
+            if grid[r+i][c+j] == number:
                 return False
+    # all other cases: possible
     return True
 
 def print_grid():
     '''Print the current state of the grid.'''
     global grid
+    print("Solution:")
     for row in grid:
         print(row)   
+    print(40*'-')
 
 
 def solve():
     '''Solve the grid, printing all possible solutions.'''
     global grid
     # list of positions to fill in
-    todo = []
-    for y in range(9):
-        for x in range(9):
-            if grid[y][x] == 0:
-                todo.append((x,y))
+    zeros = []
+    for row in range(9):
+        for col in range(9):
+            if grid[row][col] == 0:
+                zeros.append((row,col))
     # fill in recursively
-    solve_rec(todo)
+    solve_rec(zeros)
         
 
-def solve_rec(todo):
+def solve_rec(zeros):
     '''Worker function that solves the puzzle recursively.'''
     global grid
-    if todo == []:
-        # nothing left to do
-        # print solution
-        print("Solution:")
+    if len(zeros) == 0:
+        # finished; just print the solution
         print_grid()
     else:
-        # first position
-        x,y = todo[0]
+        # first zero position
+        (row,col) = zeros[0]
         # remaining positions
-        rest = todo[1:]
-        for n in range(1,10):
-            if possible(y,x,n):
-                grid[y][x] = n
+        rest = zeros[1:]
+        for number in range(1,10):
+            # check if we can place number at row,col 
+            if check_possible(number,row,col):
+                # place number and recursively continue
+                grid[row][col] = number
                 solve_rec(rest)
-                grid[y][x] = 0
+                # undo the placement to try other alternatives
+                grid[row][col] = 0
