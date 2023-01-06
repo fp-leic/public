@@ -8,6 +8,7 @@ from typing import List, Tuple, Dict
 
 Loc = Tuple[int,int]   # row, col
 
+
 def place_ship(size: int, grid: Dict[Loc,int]) -> None:
     """Place a ship of given size on a grid; modifier function."""
     while True: # repeat until the ship fits
@@ -34,7 +35,7 @@ def place_ships(ships: List[int]) -> Dict[Loc,int]:
     return grid
 
 def print_grid(grid: Dict[Loc,int]) -> None:
-    """Print a grid (for debugging only).""""
+    """Print a grid (for debugging only)."""
     for row in range(1,11):
         for col in range(1,11):
             if (row,col) in grid:
@@ -71,7 +72,7 @@ def get_location(txt: str) -> Loc:
     if 'A' <= row and row <= 'J' and 1 <= col and col<= 10:
         return (ord(row)-ord('A')+1,col)
     else:
-        raise ValueError(f'invalid position: {txt}')
+        raise ValueError(f'iliteral for int() nvalid position: {txt}')
 
 def read_loc() -> Loc:
     """Try to read a line and convert to a location."""

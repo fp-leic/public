@@ -22,10 +22,7 @@ def read_file_words(filename: str) -> Dict[str,int]:
     word counts."""
     counts : Dict[str,int] = dict()
     with open(filename, "r") as f:
-        while True:
-            line = f.readline()
-            if line == "":
-                break
+        for line in f:
             for word in text_to_words(line):
                 counts[word] = counts.get(word,0) + 1
     return counts
@@ -38,10 +35,19 @@ def common_words(filename: str, n: int) -> List[Tuple[str,int]]:
     return listofcounts[:n]
 
 
-if __name__=="__main__":
-    #
-    # determine the 20 most common words in "Alice In Wonderland"
-    #
+def write_counts(filename: str, counts: List[Tuple[str,int]]) -> None:
+    with open(filename, "w") as f:
+        for word, count in counts:
+            f.write(word + "\t" + str(count) + "\n")
+
+#
+# determine the 20 most common words in "Alice In Wonderland"
+#
+def main():
     wordcounts = common_words("AliceInWonderland.txt", 20)
-    for word,count in wordcounts:
-        print(word, '\t', count)
+    write_counts("AliceCounts.txt", wordcounts)
+
+if __name__=="__main__":
+    main()
+    
+    
