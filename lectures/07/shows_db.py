@@ -40,7 +40,7 @@ def short(shows):
 
 def stats(shows):
     """
-    Get statististics about number of episodes and cast members.
+    Get statistics about number of episodes and cast members.
     """
     cast = 0
     eps = 0
