@@ -1,6 +1,8 @@
 # --------------------------------------------
 # Lecture 16 - Higher order functions
 # --------------------------------------------
+# Pedro Vasconcelos, 2022
+#
 
 #
 # Sum squares of numbers from 1 to n
@@ -47,9 +49,9 @@ print(sum_cubes(10), sum_cubes2(10))
 # ------------------------------------------------
 import functools
 
-#------------------------------------------
+#----------------------------------------------
 # Composition: pipeline two functions together
-#-----------------------------------------
+#-----------------------------------------------
 def compose(f,g):
     def inner(x):
         return f(g(x))
@@ -96,7 +98,7 @@ def into_words(str):
     return str.split()
 
 # Filter out short words, i.e. less then 3 characters
-remove_short = functools.partial(filter, lambda w:len(w)>=3)
+remove_short = functools.partial(filter, lambda w : len(w)>=3)
 
 # Join together a sequence of words
 def join_together(words):
@@ -107,10 +109,10 @@ def join_together(words):
 # - break it in a list of words
 # - remove all words with less than 3 characters
 # - join the words together
-#
+
 combination = compose(compose(join_together, remove_short), into_words)
 
-print(combination("a mary had my little lamb"))
+print(combination("my mary had a little lamb"))
 
 
 # ----------------------------------------------
@@ -128,11 +130,11 @@ def fib(n):
         return fib(n-1) + fib(n-2) 
 
 
-# A Higher-order function that 
+# A higher-order function that 
 # return a "memorized" version of a function
-# i.e. stores function results to avoid re-computations
+# i.e. one that stores results to avoid re-computations
 def memorize(function):
-    memo = dict()              # empty dictionary for results
+    memo = dict()      # empty dictionary for results
     def wrapper(arg):
         if arg in memo:
             print(f'returning memorized argument: {arg} -> {memo[arg]}')
@@ -147,10 +149,11 @@ def memorize(function):
 
 # Fibonnacci with memorized results
 
-fast_fib = memorize(fib)
+fibmemo = memorize(fib)
 
 # The first call is slow, but the second call is instantaneous
+print(fibmemo(35))
+print(fibmemo(35))
 
-print(fast_fib(35))
-print(fast_fib(35))
+# NB: the memoized recursive definition of NB12 is still faster; why?
 
