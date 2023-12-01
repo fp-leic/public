@@ -3,13 +3,13 @@
 # 3nd version: add type hints
 # pbv, 2022
 #
-from typing import List 
+
 import functools
 
 #
 # A box is a list of strings representing rows
 # 
-Box = List[str]
+Box = list[str]
 
 def printbox(box: Box) -> None:
     """Print a box."""
