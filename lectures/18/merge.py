@@ -2,7 +2,7 @@
 """
 Created on Mon Nov 19 20:10:48 2018
 
-@author: jlopes
+@author: jlopes, pbv
 
 Peter Wentworth, Jeffrey Elkner, Allen B. Downey, and Chris Meyers,
 How to Think Like a Computer Scientist — Learning with Python 3 (RLE), 2012
@@ -12,25 +12,24 @@ How to Think Like a Computer Scientist — Learning with Python 3 (RLE), 2012
 def merge(xs, ys):
     """ Merge sorted lists xs and ys. Return a sorted result """
     result = []
-    xi = 0   # i-th element of xs
-    yi = 0   # i-th element of ys
+    i = 0   # index of next element of xs
+    j = 0   # index of next element of ys
 
-    while True:
-        if xi >= len(xs):           # If xs list is finished,
-            result.extend(ys[yi:])  # Add remaining items from ys
-            return result           # And we're done.
-
-        if yi >= len(ys):           # Same again, but swap roles
-            result.extend(xs[xi:])
-            return result
-
+    while i<len(xs) and j<len(ys):
         # Both lists still have items, copy smaller item to result.
-        if xs[xi] <= ys[yi]:
-            result.append(xs[xi])
-            xi += 1
+        if xs[i] <= ys[j]:
+            result.append(xs[i])
+            i = i + 1
         else:
-            result.append(ys[yi])
-            yi += 1
+            result.append(ys[j])
+            j = j + 1
+    # loop end
+    if i>=len(xs):            # if xs list is finished
+        result.extend(ys[j:]) # add remaining elements from ys
+    elif j>=len(ys):          # same, but swapping roles
+        result.extend(xs[i:])
+    return result
+        
 
 
 ls1 = friends = ["Joe", "Zoe", "Brad"]
