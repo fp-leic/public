@@ -1,6 +1,8 @@
 # --------------------------------------------
 # Lecture 16 - Higher order functions
 # --------------------------------------------
+# Pedro Vasconcelos, 2022
+#
 
 #
 # Sum squares of numbers from 1 to n
@@ -42,19 +44,28 @@ print(sum_squares(10), sum_squares2(10))
 print(sum_cubes(10), sum_cubes2(10))
 
 
+#
+# Summation is a special case of sum, map and range
+#
+def sum_squares3(n):
+    return sum(map(lambda x:x*x, range(1,n+1)))
+
+
 # ------------------------------------------------
 # Utilities
 # ------------------------------------------------
 import functools
 
-#------------------------------------------
-# Composition: pipeline two functions together
-#-----------------------------------------
-def compose(f,g):
+#----------------------------------------------
+# Composition: pipeline several functions together
+#-----------------------------------------------
+def compose(*args):
     def inner(x):
-        return f(g(x))
+        for fun in reversed(args):
+            x = fun(x)
+        return x
     return inner
-
+   
 fog = compose(lambda x:3*x, lambda x:x+1)
 #                 ^----f        ^------g
 # f(g(2)) = 3*(2+1) = 9
@@ -92,25 +103,31 @@ print(curried_example5(2)) # equals example(5,2)
 # First the individuals functions
 
 # Break a string into a list of words
-def into_words(str):
+def break_words(str):
+    """Break a string into a list of words."""
     return str.split()
 
-# Filter out short words, i.e. less then 3 characters
-remove_short = functools.partial(filter, lambda w:len(w)>=3)
+def join_words(alist):
+    """Join a list of words together."""
+    return ' '.join(alist)
 
-# Join together a sequence of words
-def join_together(words):
-    return ' '.join(words)
+# Filter out short words, i.e. less then 3 characters
+def remove_short(words):
+    return filter(lambda w:len(w)>=3, words)
+
+# we could also define this using functools.partial
+# remove_short = functools.partial(filter, lambda w : len(w)>=3)
+
 
 # 
-# Given a string:
+# A processing pipeline. Given a string:
 # - break it in a list of words
 # - remove all words with less than 3 characters
 # - join the words together
-#
-combination = compose(compose(join_together, remove_short), into_words)
 
-print(combination("a mary had my little lamb"))
+process = compose(join_words, remove_short, break_words)
+print(process("It was the best of times, it was the worst of times"))
+
 
 
 # ----------------------------------------------
@@ -128,11 +145,11 @@ def fib(n):
         return fib(n-1) + fib(n-2) 
 
 
-# A Higher-order function that 
+# A higher-order function that 
 # return a "memorized" version of a function
-# i.e. stores function results to avoid re-computations
+# i.e. one that stores results to avoid re-computations
 def memorize(function):
-    memo = dict()              # empty dictionary for results
+    memo = dict()      # empty dictionary for results
     def wrapper(arg):
         if arg in memo:
             print(f'returning memorized argument: {arg} -> {memo[arg]}')
@@ -147,10 +164,11 @@ def memorize(function):
 
 # Fibonnacci with memorized results
 
-fast_fib = memorize(fib)
+fibmemo = memorize(fib)
 
 # The first call is slow, but the second call is instantaneous
+print(fibmemo(30))
+print(fibmemo(30))
 
-print(fast_fib(35))
-print(fast_fib(35))
+# NB: the memoized recursive definition of NB12 is still faster; why?
 

@@ -3,7 +3,7 @@
 """
 Created on Mon Nov 19 16:35:32 2018
 
-@author: jlopes
+@author: jlopes, pbv
 
 Peter Wentworth, Jeffrey Elkner, Allen B. Downey, and Chris Meyers,
 How to Think Like a Computer Scientist — Learning with Python 3 (RLE), 2012
@@ -41,6 +41,7 @@ bigger_vocab = load_words_from_file("vocab.txt")
 def remove_adjacent_dups(xs):
     """ Return a new list in which all adjacent duplicates from xs
         have been removed.
+        Assumes that xs is *ordered*.
     """
     result = []
     most_recent_elem = None
@@ -60,26 +61,24 @@ def find_unknowns_merge_pattern(vocab, wds):
         list of words from wds that do not occur in vocab.
     """
     result = []
-    xi = 0
-    yi = 0
+    i = 0   # index in vocab
+    j = 0   # index in wds
 
-    while True:
-        if xi >= len(vocab):
-            result.extend(wds[yi:])
-            return result
+    while i<len(vocab) and j<len(wds):
+        if vocab[i] == wds[j]:    # good, word exists in vocab
+            i = i+1
 
-        if yi >= len(wds):
-            return result
+        elif vocab[i] < wds[j]:   # move past this vocab word
+            i = i+1
 
-        if vocab[xi] == wds[yi]:   # Good, word exists in vocab
-            yi += 1
+        else:                       # word is not in vocab
+            result.append(wds[j])
+            j = j+1
+    # end of loop
+    if i >= len(vocab):        # there's no more words in vocab
+          result.extend(wds[j:])
 
-        elif vocab[xi] < wds[yi]:  # Move past this vocab word,
-            xi += 1
-
-        else:                      # Got word that is not in vocab
-            result.append(wds[yi])
-            yi += 1
+    return result
 
 
 # Books are full of punctuation, and have mixtures of lowercase and uppercase

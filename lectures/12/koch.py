@@ -7,7 +7,7 @@ Created on Sun Nov 25 22:07:00 2018
 Peter Wentworth, Jeffrey Elkner, Allen B. Downey, and Chris Meyers,
 How to Think Like a Computer Scientist — Learning with Python 3, 2012
 """
-
+import turtle
 
 def koch(pen, order, size):
     """
@@ -26,6 +26,9 @@ def koch(pen, order, size):
         pen.left(60)
         koch(pen, order-1, size/3)  # recursive call
 
+
+
+
 # a better version
 #def koch(pen, order, size):
 #    if order == 0:
@@ -35,8 +38,6 @@ def koch(pen, order, size):
 #            koch(pen, order-1, size/3)  # recursive call
 #            pen.left(angle)
 
-# get a pen
-import turtle
 
 canvas = turtle.Screen()
 canvas.setup(800, 300)
@@ -51,12 +52,12 @@ tess.penup()
 tess.goto(-300, -100)
 tess.pendown()
 
-koch(tess, 0, 600)
-#koch(tess, 1, 600)
+# koch(tess, 0, 600)
+# koch(tess, 1, 600)
 #koch(tess, 2, 600)
-#koch(tess, 3, 600)
-#koch(tess, 4, 600)
+# koch(tess, 3, 600)
+koch(tess, 4, 600)
 
-canvas.mainloop()     # Wait for user to close window
-turtle.bye()
+#canvas.mainloop()     # Wait for user to close window
+#turtle.bye()
 #wn.exitonclick()      # wait for a user click on the canvas

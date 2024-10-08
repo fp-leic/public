@@ -3,7 +3,7 @@
 """
 Created on Mon Nov 19 16:35:32 2018
 
-@author: jlopes
+@author: jlopes, pbv
 
 Peter Wentworth, Jeffrey Elkner, Allen B. Downey, and Chris Meyers,
 How to Think Like a Computer Scientist — Learning with Python 3 (RLE), 2012
@@ -14,7 +14,7 @@ import time
 
 # utility function
 def load_from_file(filename):
-    """ Read words from filename, return list of words. """
+    """ Read words from filename, return a string. """
     f = open(filename, "r")
     file_content = f.read()
     f.close()
@@ -22,22 +22,23 @@ def load_from_file(filename):
 
 
 # Linear Search
-def search_linear(xs, target):
+def linear_search(xs, target):
     """ Find and return the index of target in sequence xs """
     for (i, v) in enumerate(xs):
         if v == target:
             return i
-    return -1
+    return None
 
 
 # Binary Search
-def search_binary(xs, target):
-    """ Find and return the index of key in sequence xs """
+def binary_search(xs, target):
+    """ Find and return the index of key in sequence xs.
+        The sequence xs must be ordered!"""
     lb = 0
     ub = len(xs)
     while True:
-        if lb == ub:   # If region of interest (ROI) becomes empty
-            return -1
+        if lb == ub:     # If region of interest (ROI) becomes empty
+            return None  # NOT found!
 
         # Next probe should be in the middle of the ROI
         mid_index = (lb + ub) // 2
@@ -45,8 +46,7 @@ def search_binary(xs, target):
         # Fetch the item at that position
         item_at_mid = xs[mid_index]
 
-        # print("ROI[{0}:{1}](size={2}), probed='{3}', target='{4}'"
-        #       .format(lb, ub, ub-lb, item_at_mid, target))
+        # print("ROI[{0}:{1}](size={2}), probed='{3}', target='{4}'".format(lb, ub, ub-lb, item_at_mid, target))
 
         # How does the probed item compare to the target?
         if item_at_mid == target:
@@ -64,7 +64,7 @@ def find_unknown_words_l(vocab, wds):
     """ Return a list of words in wds that do not occur in vocab """
     result = []
     for w in wds:
-        if (search_linear(vocab, w) < 0):  # linear search
+        if (linear_search(vocab, w) is None):  # linear search
             result.append(w)
     return result
 
@@ -74,7 +74,7 @@ def find_unknown_words_b(vocab, wds):
     """ Return a list of words in wds that do not occur in vocab """
     result = []
     for w in wds:
-        if (search_binary(vocab, w) < 0):  # binary search
+        if (binary_search(vocab, w) is None):  # binary search
             result.append(w)
     return result
 
@@ -87,11 +87,6 @@ def load_words_from_file(filename):
     return wds
 
 
-# now read a sensible size vocabulary
-bigger_vocab = load_words_from_file("vocab.txt")
-print()
-print("There are {0} words in the vocabulary.\nStarting with:\n{1} "
-      .format(len(bigger_vocab), bigger_vocab[:12]))
 
 
 # Books are full of punctuation, and have mixtures of lowercase and uppercase
@@ -120,6 +115,11 @@ def get_words_in_book(filename):
     wds = text_to_words(file_content)
     return wds
 
+# now read a sensible size vocabulary
+bigger_vocab = load_words_from_file("vocab.txt")
+print()
+print("There are {0} words in the vocabulary.\nStarting with:\n{1} "
+      .format(len(bigger_vocab), bigger_vocab[:12]))
 
 # Now we're ready to read in our book
 book_words = get_words_in_book("AliceInWonderland.txt")
@@ -137,7 +137,7 @@ t0 = time.perf_counter()
 missing_words = find_unknown_words_l(bigger_vocab, book_words)
 
 # uncomment next for binary search
-#missing_words = find_unknown_words_b(bigger_vocab, book_words)
+# missing_words = find_unknown_words_b(bigger_vocab, book_words)
 
 t1 = time.perf_counter()
 print(" took {0:.4f} seconds.".format(t1-t0))
