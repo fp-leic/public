@@ -103,26 +103,6 @@ def add_show(title,info,db):
     db[title] = info # this assigns info to the given title; if key doesn't exist, it is created; otherwise the value is replaced
     # this is a mutator, it changes the given dictionary and returns nothing
 
-
-# def genres(db):
-#     gs = set()
-#     for info in db.values():
-#         gs = gs | set(info[2])
-#     return (gs)
-
-# def common_genres(db):
-#     first = True
-#     for info in db.values():
-#         if first:
-#             gs = set(info[2])
-#             first = False
-#         else: 
-#             gs = gs & set(info[2])
-#     return gs
-
-
-
-
 """
 ChatGPT prompt: "give me, as a Python dictionary, a list of 20 'prestige' tv shows. the key of the dictionary should should be the title, and the value a 4-list with (year, number of episodes, genres, watched status set to false)."
 """
