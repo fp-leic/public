@@ -16,14 +16,14 @@ print()
 print(job_data)
 
 # standard sort
-job_data.sort()
+sorted_data = sorted(job_data)
 print()
-print(job_data)
+print(sorted_data)
 
 # sort by key
 def by_state(a):
     return a[1]
 
-job_data.sort(key=by_state)
+key_sorted_data = sorted(job_data,key=by_state)
 print()
-print(job_data)
+print(key_sorted_data)
