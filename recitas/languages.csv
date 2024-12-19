@@ -1,0 +1,6 @@
+language,year,paradigm,extension,version
+Python,1991,Multi-paradigm,.py,3.13.1
+C,1972,Imperative,.c,C23
+Java,1995,Object-oriented,.java,Java 23
+Haskell,1990,Functional,.hs,Haskell 2010
+Prolog,1995,Logical,.pl,ISO/IEC 13211-1:2017
